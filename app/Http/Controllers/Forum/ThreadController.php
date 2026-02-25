@@ -22,7 +22,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //
+        return view('forum.threads.create');
     }
 
     /**

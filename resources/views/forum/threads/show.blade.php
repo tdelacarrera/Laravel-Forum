@@ -209,6 +209,46 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
     }
 }
 
+.formtable {
+    width: 100%;
+    border-collapse: collapse;
+    background: #142030;
+    border: 1px solid #2A3C55;
+}
+
+.formtable th {
+    background: #1F2F4A;
+    color: #CCDDFF;
+    padding: 10px 12px;
+    text-align: right;
+    vertical-align: top;
+    border: 1px solid #334466;
+    width: 140px;
+    font-weight: normal;
+}
+
+.formtable td {
+    padding: 10px 12px;
+    border: 1px solid #2A3C55;
+    background: #18263A;
+}
+
+.formtable textarea {
+    background: #0F1620;
+    color: #E0E0E0;
+    border: 1px solid #556677;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    padding: 6px;
+    resize: vertical;
+    min-height: 140px;
+}
+
+.formtable textarea:focus {
+    border-color: #88CCFF;
+    box-shadow: 0 0 6px rgba(136, 204, 255, 0.3);
+}
+
 </style>
 @extends('layouts.forum')
 
@@ -341,5 +381,34 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
             <input type="button" class="button" value="Reply to this topic" />
         </p>
 
+    </div>
+    <!-- Quick Reply Box - al final del thread -->
+    <div style="margin: 40px 0 60px 0; max-width: 980px; margin-left: auto; margin-right: auto;">
+        <h2 style="font-size: 14px; color: #99DDFF; margin: 0 0 10px 0; border-bottom: 1px solid #334466; padding-bottom: 6px;">
+            Quick Reply to this topic
+        </h2>
+
+        <form action="#" method="post">
+            <table class="formtable" style="margin-bottom: 0;">
+                <tr>
+                    <th style="width: 140px;">Message:</th>
+                    <td>
+                        <textarea name="message" rows="10" style="height: 180px; width: 100%;" placeholder="Type your reply here... BBCode & smilies enabled"></textarea>
+                        
+                        <div style="margin-top: 8px; font-size: 10px; color: #88AACC;">
+                            <label><input type="checkbox" name="notify" /> Notify me of replies</label><br />
+                            <label><input type="checkbox" name="disable_bbcode" /> Disable BBCode</label>
+                            &nbsp; • &nbsp; [ <a href="#">Full Editor / More Options</a> ]
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <p style="text-align: center; margin: 20px 0 0 0;">
+                <input type="submit" class="button button-primary" value="Post Quick Reply" style="font-weight: bold;" />
+                <input type="button" class="button" value="Preview" />
+                <input type="reset" class="button" value="Clear" />
+            </p>
+        </form>
     </div>
 @endsection
