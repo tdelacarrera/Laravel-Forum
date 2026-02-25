@@ -17,7 +17,7 @@
                 <img src="" alt="image" />
             </td>
             <td>
-                <div class="forumname"><a href="#">{{ $thread['title'] }}</a></div>
+                <div class="forumname"><a href="{{ route('forum.threads.index') }}">{{ $thread['title'] }}</a></div>
                 <div class="forumdesc">{{ $thread['content'] }}</div>
             </td>
             <td class="stats">placeholder</td>
