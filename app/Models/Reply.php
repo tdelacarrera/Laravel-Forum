@@ -11,7 +11,9 @@ class Reply extends Model
     use HasFactory;
 
     protected $fillable = [
-        'content'
+        'content',
+        'user_id',
+        'thread_id'
     ];
 
     public function user()

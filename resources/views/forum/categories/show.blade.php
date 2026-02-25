@@ -29,6 +29,6 @@
 </table>
 
 <p style="text-align:center; margin:30px 0;">
-    <a href="{{ route('forum.threads.create') }}" class="button">New Topic</a>
+    <a href="{{ route('forum.threads.create', ['category_id' => $category->id]) }}) }}" class="button">New Topic</a>
 </p>
 @endsection

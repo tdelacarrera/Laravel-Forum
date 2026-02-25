@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Http\Controllers\Controller;
 use App\Models\Thread;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ThreadController extends Controller
@@ -20,9 +21,15 @@ class ThreadController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('forum.threads.create');
+        $category = null;
+
+        if ($request->has('category_id')) {
+            $category = Category::find($request->query('category_id'));
+        }
+        
+        return view('forum.threads.create', compact('category'));
     }
 
     /**
@@ -30,7 +37,16 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'category_id' => 'required|exists:categories,id'
+        ]);
+         $data['user_id'] = auth()->id();
+
+        Thread::create($data);
+
+        return redirect()->route('forum.categories.index')->with('success', 'Thread created successfully.');
     }
 
     /**

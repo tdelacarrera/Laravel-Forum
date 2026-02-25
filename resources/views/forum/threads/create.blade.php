@@ -199,18 +199,19 @@ h1 {
 
         <h1>Post New Topic</h1>
 
-        <form action="#" method="post">
+        <form method="post" action="{{ route('forum.threads.store') }}">
+            @csrf
             <table class="formtable">
                 <tr>
                     <th>Topic Title:</th>
                     <td>
-                        <input type="text" name="subject" maxlength="120" placeholder="Enter a descriptive title..." />
+                        <input type="text" name="title" maxlength="120" placeholder="Enter a descriptive title..." />
                     </td>
                 </tr>
                 <tr>
                     <th>Message:</th>
                     <td>
-                        <textarea name="message" rows="15" placeholder="Write your message here... Use [img] [/img] [url] [/url] etc if BBCode is enabled."></textarea>
+                        <textarea name="content" rows="15" placeholder="Write your message here..."></textarea>
                         <div style="margin-top:8px; font-size:10px; color:#88AACC;">
                             BBCode enabled • Smilies enabled • [ Preview ] button coming soon™
                         </div>
@@ -224,6 +225,7 @@ h1 {
                     </td>
                 </tr>
             </table>
+            <input type="hidden" name="category_id" value="{{ $category->id }}">
 
             <p style="text-align:center; margin:30px 0;">
                 <input type="submit" class="button button-primary" value="Submit New Topic" />
