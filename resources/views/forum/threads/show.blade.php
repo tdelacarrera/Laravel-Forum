@@ -307,8 +307,6 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
                 </td>
             </tr>
         </table>
-        @endforeach
-
         <div class="post-controls">
             <a href="#">Quote</a>
             <a href="#">Reply</a>
@@ -317,13 +315,7 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
             <a href="#">Report</a>
         </div>
     </div>
-        <div class="post-controls">
-            <a href="#">Quote</a>
-            <a href="#">Reply</a>
-            <a href="#">Edit</a>
-        </div>
-    </div>
-
+    @endforeach
         <!-- More posts... -->
 
         <div class="pagination" style="margin-top:40px;">
