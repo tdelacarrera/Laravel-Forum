@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Http\Controllers\Controller;
 use App\Models\Reply;
+use App\Models\Thread;
 use Illuminate\Http\Request;
 
 class ReplyController extends Controller
@@ -29,7 +30,15 @@ class ReplyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'content' => 'required|string',
+            'thread_id' => 'required|exists:threads,id'
+        ]);
+         $data['user_id'] = auth()->id();
+
+        Reply::create($data);
+
+        return redirect()->route('forum.threads.show', $data['thread_id'])->with('success', 'Reply created successfully.');
     }
 
     /**

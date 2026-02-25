@@ -348,12 +348,13 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
             Quick Reply to this topic
         </h2>
 
-        <form action="#" method="post">
+        <form action="{{ route('forum.replies.store', ['thread_id' => $thread->id]) }}" method="post">
+            @csrf
             <table class="formtable" style="margin-bottom: 0;">
                 <tr>
                     <th style="width: 140px;">Message:</th>
                     <td>
-                        <textarea name="message" rows="10" style="height: 180px; width: 100%;" placeholder="Type your reply here... BBCode & smilies enabled"></textarea>
+                        <textarea name="content" rows="10" style="height: 180px; width: 100%;" placeholder="Type your reply here... BBCode & smilies enabled"></textarea>
                         
                         <div style="margin-top: 8px; font-size: 10px; color: #88AACC;">
                             <label><input type="checkbox" name="notify" /> Notify me of replies</label><br />

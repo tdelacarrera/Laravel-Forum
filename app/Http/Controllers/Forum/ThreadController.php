@@ -46,7 +46,7 @@ class ThreadController extends Controller
 
         Thread::create($data);
 
-        return redirect()->route('forum.categories.index')->with('success', 'Thread created successfully.');
+        return redirect()->route('forum.categories.show', $data['category_id'])->with('success', 'Thread created successfully.');
     }
 
     /**
@@ -54,7 +54,7 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread)
     {
-        $replies = $thread->replies()->with('user')->paginate(15);
+        $replies = $thread->replies()->with('user')->paginate(100);
 
         return view('forum.threads.show', compact('thread', 'replies'));
     }
