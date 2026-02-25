@@ -260,7 +260,7 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
         <div class="breadcrumb">
             <a href="#">My New Forum</a> »
             <a href="#">General Discussion</a> »
-            Lorem Ipsum Dolor Sit Amet
+            {{ $thread->title }}
         </div>
 
         <p style="text-align:right; margin:12px 0;">
@@ -280,6 +280,7 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
             <a href="#">Last &raquo;</a>
         </div>
 
+    @foreach($replies as $reply)
     <!-- Post 1 (OP) -->
     <div class="post">
         <table class="post-table">
@@ -289,34 +290,24 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
                 </td>
                 <td>
                     <div class="post-header">
-                        <span class="post-author">LoremUser</span>
-                        <span class="post-date">Posted: Lorem ipsum 00:00 AM</span>
+                        <span class="post-author">{{ $reply->user->name }}</span>
+                        <span class="post-date">Posted: {{ $reply->created_at->format('M d, Y h:i A') }}</span>
                     </div>
 
                     <div class="post-body">
                         <strong>Topic: Lorem Ipsum Dolor Sit Amet</strong><br /><br />
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
-                        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br />
-                        Ut enim ad minim veniam:<br />
-                        • Lorem ipsum dolor<br />
-                        • Sit amet consectetur<br />
-                        • Adipiscing elit sed<br />
-                        • Do eiusmod tempor<br />
-                        • Incididunt ut labore<br />
-                        • Et dolore magna<br />
-                        • Aliqua ut enim<br /><br />
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
+                        {{$reply->content}}
                     </div>
 
                     <div class="signature">
                         <hr style="border-color:#334466; border-style:dashed;" />
-                        Lorem: loremipsum123<br />
-                        Ipsum: lorem@ipsum.com<br />
+                        {{ $reply->user->email }}<br />
                         <img src="" alt="Signature" />
                     </div>
                 </td>
             </tr>
         </table>
+        @endforeach
 
         <div class="post-controls">
             <a href="#">Quote</a>
@@ -326,37 +317,6 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
             <a href="#">Report</a>
         </div>
     </div>
-
-    <!-- Post 2 -->
-    <div class="post">
-        <table class="post-table">
-            <tr>
-                <td class="avatar">
-                    <img src="" alt="Avatar" />
-                </td>
-                <td>
-                    <div class="post-header">
-                        <span class="post-author">IpsumKitten</span>
-                        <span class="post-date">Posted: Lorem ipsum 00:00 AM</span>
-                    </div>
-
-                    <div class="post-body">
-                        Lorem ipsum dolor sit amet <strong>consectetur adipiscing</strong> elit!<br />
-                        Sed do eiusmod <strong>tempor incididunt</strong> ut labore et dolore magna aliqua.<br /><br />
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.<br /><br />
-                        <img src="" alt="Placeholder Image" /><br />
-                        Excepteur sint occaecat cupidatat non proident.
-                    </div>
-
-                    <div class="signature">
-                        <hr style="border-color:#334466; border-style:dashed;" />
-                        Lorem status: dolor sit amet<br />
-                        <marquee direction="left">☆･ﾟ:*･ﾟ:*･ﾟ  lorem ipsum placeholder  *:･ﾟ*:･ﾟ･☆</marquee>
-                    </div>
-                </td>
-            </tr>
-        </table>
-
         <div class="post-controls">
             <a href="#">Quote</a>
             <a href="#">Reply</a>

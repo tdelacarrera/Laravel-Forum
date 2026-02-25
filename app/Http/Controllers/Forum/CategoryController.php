@@ -13,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-          $categories = Category::withCount('threads')->withCount('replies')->paginate(20);
+          $categories = Category::withCount('threads')->withCount('replies')->paginate(15);
           
           return view('forum.categories.index', compact('categories'));
     }
@@ -39,7 +39,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $threads = $category->threads()->withCount('replies')->with('lastReply.user')->paginate(20);
+        $threads = $category->threads()->withCount('replies')->with('lastReply.user')->paginate(15);
 
         return view('forum.categories.show', compact('category', 'threads'));
     }
