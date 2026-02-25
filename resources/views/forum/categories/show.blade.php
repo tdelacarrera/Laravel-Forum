@@ -28,6 +28,50 @@
     @endforeach
 </table>
 
+{{-- Paginación estilo retro forum --}}
+@if ($threads->hasPages())
+    <div class="pagination" style="margin-top: 20px; text-align:center;">
+        {{-- First Page Link --}}
+        @if ($threads->onFirstPage())
+            <span class="disabled">&laquo; First</span>
+        @else
+            <a href="{{ $threads->url(1) }}">&laquo; First</a>
+        @endif
+
+        {{-- Previous Page Link --}}
+        @if ($threads->onFirstPage())
+            <span class="disabled">&lt; Prev</span>
+        @else
+            <a href="{{ $threads->previousPageUrl() }}">&lt; Prev</a>
+        @endif
+
+        {{-- Pagination Elements --}}
+        <span class="current">Page {{ $threads->currentPage() }} of {{ $threads->lastPage() }}</span>
+
+        @foreach ($threads->getUrlRange(1, $threads->lastPage()) as $page => $url)
+            @if ($page == $threads->currentPage())
+                <span class="current">{{ $page }}</span>
+            @else
+                <a href="{{ $url }}">{{ $page }}</a>
+            @endif
+        @endforeach
+
+        {{-- Next Page Link --}}
+        @if ($threads->hasMorePages())
+            <a href="{{ $threads->nextPageUrl() }}">Next &gt;</a>
+        @else
+            <span class="disabled">Next &gt;</span>
+        @endif
+
+        {{-- Last Page Link --}}
+        @if ($threads->hasMorePages())
+            <a href="{{ $threads->url($threads->lastPage()) }}">Last &raquo;</a>
+        @else
+            <span class="disabled">Last &raquo;</span>
+        @endif
+    </div>
+@endif
+
 <p style="text-align:center; margin:30px 0;">
     <a href="{{ route('forum.threads.create', ['category_id' => $category->id]) }}) }}" class="button">New Topic</a>
 </p>

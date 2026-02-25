@@ -17,8 +17,8 @@ class ReplyFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => 1,
-            'thread_id' => 1,
+            'user_id' => \App\Models\User::inRandomOrder()->first()->id,
+            'thread_id' => \App\Models\Thread::inRandomOrder()->first()->id,
             'content' => fake()->text(200)
         ];
     }
