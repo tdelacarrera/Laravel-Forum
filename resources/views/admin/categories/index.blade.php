@@ -60,7 +60,7 @@
                                     </td>
 
                                     <td class="px-6 py-4 text-sm text-gray-500">
-                                        {{ $category->description ?? '—' }}
+                                        {{ Str::limit($category->description, 255) }}
                                     </td>
 
                                     <td class="px-6 py-4 text-right">

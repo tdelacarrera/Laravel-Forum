@@ -38,7 +38,7 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread)
     {
-        //
+        return view('forum.threads.show', compact('thread'));
     }
 
     /**

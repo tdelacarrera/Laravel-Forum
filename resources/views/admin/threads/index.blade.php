@@ -61,7 +61,7 @@
                                     </td>
 
                                     <td class="px-6 py-4 text-sm text-gray-500">
-                                        {{ $thread->content }}
+                                        {{ Str::limit($thread->content, 255) }}
                                     </td>
 
                                     <td class="px-6 py-4 text-sm text-gray-500">

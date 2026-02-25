@@ -29,4 +29,9 @@ class Thread extends Model
     {
         return $this->hasMany(Reply::class);
     }
+
+    public function lastReply()
+    {
+        return $this->hasOne(Reply::class)->latestOfMany();
+    }
 }

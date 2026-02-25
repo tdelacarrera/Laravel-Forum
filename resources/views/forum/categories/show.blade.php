@@ -1,15 +1,14 @@
 @extends('layouts.forum')
 
-@section('title', 'Home - Forum')
+@section('title', 'Threads')
 
 @section('content')
 <table class="forumtable">
     <tr>
         <th style="width:60px;"> </th>
-        <th>Forum</th>
-        <th class="stats">Topics</th>
-        <th class="stats">Posts</th>
-        <th class="lastpost">Last Post</th>
+        <th>Threads</th>
+        <th class="stats">Replies</th>
+        <th class="lastpost">Last Reply</th>
     </tr>
     @foreach($threads as $thread)
         <tr class="{{ $loop->even ? 'row1' : 'row2' }}">
@@ -17,18 +16,19 @@
                 <img src="" alt="image" />
             </td>
             <td>
-                <div class="forumname"><a href="{{ route('forum.threads.index') }}">{{ $thread['title'] }}</a></div>
-                <div class="forumdesc">{{ $thread['content'] }}</div>
+                <div class="forumname"><a href="{{ route('forum.threads.show', $thread) }}">{{ $thread->title }}</a></div>
+                <div class="forumdesc">{{ Str::limit($category->description, 512) }}</div>
             </td>
-            <td class="stats">placeholder</td>
-            <td class="stats">placeholder</td>
-            <td class="lastpost">placeholder</td>
+            <td class="stats">{{ $thread->replies_count }}</td>
+            <td class="lastpost">
+                {{ Str::limit($thread->lastReply->content ?? 'No replies yet', 100) }}<br>
+                {{ $thread->lastReply->user->name ?? 'Unknown' }}
+            </td>
         </tr>
     @endforeach
 </table>
 
 <p style="text-align:center; margin:30px 0;">
     <a href="#" class="button">New Topic</a>
-    <a href="#" class="button">Mark forums read</a>
 </p>
 @endsection
