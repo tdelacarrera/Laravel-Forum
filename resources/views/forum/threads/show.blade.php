@@ -282,7 +282,7 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
 
     @foreach($replies as $reply)
     <!-- Post 1 (OP) -->
-    <div class="post">
+    <div class="post" id="reply-{{ $reply->id }}">
         <table class="post-table">
             <tr>
                 <td class="avatar">

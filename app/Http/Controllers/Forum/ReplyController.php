@@ -36,9 +36,10 @@ class ReplyController extends Controller
         ]);
          $data['user_id'] = auth()->id();
 
-        Reply::create($data);
+        $reply = Reply::create($data);
 
-        return redirect()->route('forum.threads.show', $data['thread_id'])->with('success', 'Reply created successfully.');
+
+        return redirect()->route('forum.threads.show', $data['thread_id'])->with('success', 'Reply created successfully.')->withFragment('reply-' . $reply->id);
     }
 
     /**
