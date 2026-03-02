@@ -7,8 +7,18 @@ use App\Http\Controllers\Forum\ReplyController;
 
 Route::get('/', [CategoryController::class, 'index'])->name('forum.categories.index');
 
-Route::prefix('forum')->name('forum.')->group(function(){
-    Route::resource('categories', CategoryController::class);
-    Route::resource('threads', ThreadController::class);
-    Route::resource('replies', ReplyController::class);
+Route::prefix('forum')->name('forum.')->group(function () {
+
+    // Rutas publicas sin auth
+    Route::resource('categories', CategoryController::class)->only(['index', 'show']);
+    Route::resource('threads', ThreadController::class)->only(['index', 'show', 'create']);
+    Route::resource('replies', ReplyController::class)->only(['index', 'show']);
+
+    // Rutas que requieren login
+    Route::middleware('auth')->group(function () {
+        Route::resource('categories', CategoryController::class)->only(['store', 'edit', 'update', 'destroy']);
+        Route::resource('threads', ThreadController::class)->only(['create', 'store', 'edit', 'update', 'destroy']);
+        Route::resource('replies', ReplyController::class)->only(['create', 'store', 'edit', 'update', 'destroy']);
+    });
+
 });
