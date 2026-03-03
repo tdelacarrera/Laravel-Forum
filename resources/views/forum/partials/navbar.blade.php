@@ -12,8 +12,7 @@
             </a>
         </form>
     @endguest
-    <a href="">Search</a>
     <a href="{{ route('forum.users.index') }}">Memberlist</a>
-    <a href="">FAQ</a>
+    <a href="{{ route('forum.faq') }}">FAQ</a>
     <a href="">Messages</a>
 </div>

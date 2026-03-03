@@ -305,6 +305,3 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
         </p>
     </div>
     @endsection
-</div>
-</body>
-</html>

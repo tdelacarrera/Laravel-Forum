@@ -8,9 +8,11 @@ use App\Http\Controllers\Forum\UserController;
 
 Route::get('/', [CategoryController::class, 'index'])->name('forum.categories.index');
 
+
+
 Route::prefix('forum')->name('forum.')->group(function () {
 
-    // Rutas publicas sin auth
+    // Rutas públicas sin auth
     Route::resource('categories', CategoryController::class)->only(['index', 'show']);
     Route::resource('threads', ThreadController::class)->only(['index', 'show', 'create']);
     Route::resource('replies', ReplyController::class)->only(['index', 'show']);
@@ -22,5 +24,7 @@ Route::prefix('forum')->name('forum.')->group(function () {
         Route::resource('threads', ThreadController::class)->only(['create', 'store', 'edit', 'update', 'destroy']);
         Route::resource('replies', ReplyController::class)->only(['create', 'store', 'edit', 'update', 'destroy']);
     });
+
+    Route::get('/faq', function () { return view('forum.faq'); })->name('faq');
 
 });
