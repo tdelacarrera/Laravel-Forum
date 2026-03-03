@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@yield('title', 'My Retro Forum')</title>
+    <title>@yield('title', 'My New Forum')</title>
 
     <!-- Estilos -->
     <link rel="stylesheet" href="{{ asset('css/forum.css') }}" />
