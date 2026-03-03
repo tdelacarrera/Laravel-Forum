@@ -1,4 +1,4 @@
-<style type="text/css">
+<style>
 body {
     background-color: #0D1B26;
     background-image: url('https://files.catbox.moe/retro-forum-bg.jpg');
@@ -9,8 +9,10 @@ body {
     font-size: 11px;
     color: #E0E0E0;
 }
+
 a { color: #88CCFF; text-decoration: none; }
 a:hover { color: #FFFFFF; text-decoration: underline; }
+
 #wrapper {
     min-height: 100vh;
     display: flex;
@@ -19,15 +21,17 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
     border-left: 1px solid #2A3C55;
     border-right: 1px solid #2A3C55;
     margin: 0 auto;
+    max-width: 100%;
     width: 100%;
-    max-width: 900px;
     box-sizing: border-box;
 }
+
 #header {
     background: #1A2A44 url('https://i.imgur.com/retro-header-gradient.png') repeat-x top;
     padding: 20px 3%;
     border-bottom: 2px solid #334466;
 }
+
 #logo {
     font-family: "Trebuchet MS", Arial, sans-serif;
     font-size: 36px;
@@ -35,29 +39,31 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
     letter-spacing: -1px;
     text-shadow: 2px 2px 4px #000;
     margin: 0;
-    text-align: center;
 }
+
 #logo span { color: #FFDD88; }
+
 .navbar {
     background: #223344;
     padding: 8px 3%;
     font-size: 11px;
     border-bottom: 1px solid #334455;
-    text-align: center;
 }
+
 .navbar a {
     color: #BBDDFF;
-    margin: 0 14px;
+    margin-right: 18px;
+    white-space: nowrap;
 }
+
 #pagebody {
-    padding: 40px 5%;
+    padding: 18px 3%;
     flex: 1 0 auto;
 }
 .breadcrumb {
     font-size: 12px;
     margin-bottom: 20px;
     color: #AACCFF;
-    text-align: center;
 }
 .breadcrumb a { color: #88CCFF; }
 
@@ -77,7 +83,6 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
     font-weight: bold;
     color: #CCDDFF;
     font-size: 14px;
-    text-align: center;
 }
 .login-body {
     padding: 24px 30px 30px;
