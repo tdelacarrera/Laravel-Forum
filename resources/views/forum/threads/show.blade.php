@@ -269,16 +269,49 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
             <input type="button" class="button" value="Post Reply" />
         </p>
 
-        <div class="pagination">
-            <a href="#">&laquo; First</a>
-            <a href="#">&lt; Prev</a>
-            <span class="current">Page 1 of 14</span>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">Next &gt;</a>
-            <a href="#">Last &raquo;</a>
-        </div>
+        @if ($replies->hasPages())
+            <div class="pagination" style="margin-top: 20px; text-align:center;">
+                {{-- First Page Link --}}
+                @if ($replies->onFirstPage())
+                    <span class="disabled">&laquo; First</span>
+                @else
+                    <a href="{{ $replies->url(1) }}">&laquo; First</a>
+                @endif
+
+                {{-- Previous Page Link --}}
+                @if ($replies->onFirstPage())
+                    <span class="disabled">&lt; Prev</span>
+                @else
+                    <a href="{{ $replies->previousPageUrl() }}">&lt; Prev</a>
+                @endif
+
+                {{-- Pagination Elements --}}
+                <span class="current">Page {{ $replies->currentPage() }} of {{ $replies->lastPage() }}</span>
+
+                @foreach ($replies->getUrlRange(1, $replies->lastPage()) as $page => $url)
+                    @if ($page == $replies->currentPage())
+                        <span class="current">{{ $page }}</span>
+                    @else
+                        <a href="{{ $url }}">{{ $page }}</a>
+                    @endif
+                @endforeach
+
+                {{-- Next Page Link --}}
+                @if ($replies->hasMorePages())
+                    <a href="{{ $replies->nextPageUrl() }}">Next &gt;</a>
+                @else
+                    <span class="disabled">Next &gt;</span>
+                @endif
+
+                {{-- Last Page Link --}}
+                @if ($replies->hasMorePages())
+                    <a href="{{ $replies->url($replies->lastPage()) }}">Last &raquo;</a>
+                @else
+                    <span class="disabled">Last &raquo;</span>
+                @endif
+            </div>
+        @endif
+
 
     @foreach($replies as $reply)
     <!-- Post 1 (OP) -->
@@ -318,16 +351,49 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
     @endforeach
         <!-- More posts... -->
 
-        <div class="pagination" style="margin-top:40px;">
-            <a href="#">&laquo; First</a>
-            <a href="#">&lt; Prev</a>
-            <span class="current">Page 1 of 14</span>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">Next &gt;</a>
-            <a href="#">Last &raquo;</a>
-        </div>
+        @if ($replies->hasPages())
+            <div class="pagination" style="margin-top: 20px; text-align:center;">
+                {{-- First Page Link --}}
+                @if ($replies->onFirstPage())
+                    <span class="disabled">&laquo; First</span>
+                @else
+                    <a href="{{ $replies->url(1) }}">&laquo; First</a>
+                @endif
+
+                {{-- Previous Page Link --}}
+                @if ($replies->onFirstPage())
+                    <span class="disabled">&lt; Prev</span>
+                @else
+                    <a href="{{ $replies->previousPageUrl() }}">&lt; Prev</a>
+                @endif
+
+                {{-- Pagination Elements --}}
+                <span class="current">Page {{ $replies->currentPage() }} of {{ $replies->lastPage() }}</span>
+
+                @foreach ($replies->getUrlRange(1, $replies->lastPage()) as $page => $url)
+                    @if ($page == $replies->currentPage())
+                        <span class="current">{{ $page }}</span>
+                    @else
+                        <a href="{{ $url }}">{{ $page }}</a>
+                    @endif
+                @endforeach
+
+                {{-- Next Page Link --}}
+                @if ($replies->hasMorePages())
+                    <a href="{{ $replies->nextPageUrl() }}">Next &gt;</a>
+                @else
+                    <span class="disabled">Next &gt;</span>
+                @endif
+
+                {{-- Last Page Link --}}
+                @if ($replies->hasMorePages())
+                    <a href="{{ $replies->url($replies->lastPage()) }}">Last &raquo;</a>
+                @else
+                    <span class="disabled">Last &raquo;</span>
+                @endif
+            </div>
+        @endif
+
 
         <p style="text-align:center; margin:30px 0;">
             <input type="button" class="button" value="Reply to this topic" />

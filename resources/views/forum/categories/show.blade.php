@@ -27,7 +27,7 @@
     @endforeach
 </table>
 
-{{-- Paginación estilo retro forum --}}
+
 @if ($threads->hasPages())
     <div class="pagination" style="margin-top: 20px; text-align:center;">
         {{-- First Page Link --}}
