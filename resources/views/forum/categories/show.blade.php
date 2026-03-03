@@ -8,7 +8,7 @@
         <th style="width:60px;"> </th>
         <th>Threads</th>
         <th class="stats">Replies</th>
-        <th class="lastpost">Last Reply</th>
+        <th class="lastpost">Author</th>
     </tr>
     @foreach($threads as $thread)
         <tr class="{{ $loop->even ? 'row1' : 'row2' }}">
@@ -21,8 +21,7 @@
             </td>
             <td class="stats">{{ $thread->replies_count }}</td>
             <td class="lastpost">
-                {{ Str::limit($thread->lastReply->content ?? 'No replies yet', 100) }}<br>
-                {{ $thread->lastReply->user->name ?? 'Unknown' }}
+                {{ $thread->user->name ?? 'Unknown' }}<br>
             </td>
         </tr>
     @endforeach
@@ -73,6 +72,6 @@
 @endif
 
 <p style="text-align:center; margin:30px 0;">
-    <a href="{{ route('forum.threads.create', ['category_id' => $category->id]) }}" class="button">New Topic</a>
+    <a href="{{ route('forum.threads.create', ['category_id' => $category->id]) }}" class="button">New Thread</a>
 </p>
 @endsection
