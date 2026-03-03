@@ -51,6 +51,12 @@
                                         </div>
                                     </td>
 
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm font-medium text-gray-900">
+                                            {{ $user->email }}
+                                        </div>
+                                    </td>
+
                                     <td class="px-6 py-4 text-right">
                                         <div class="flex justify-end gap-3">
 

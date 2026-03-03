@@ -46,7 +46,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -54,7 +54,16 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+        ]);
+
+        $user->update($request->all());
+
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'User updated successfully.');
     }
 
     /**
@@ -62,6 +71,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'User deleted successfully');
     }
 }
