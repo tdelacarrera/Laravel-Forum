@@ -13,11 +13,26 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::withCount('threads')->orderBy('id', 'desc')->paginate(40);
+        $query = User::withCount('threads');
+
+        
+        if ($username = request('username')) {
+            $query->where('name', 'like', "%{$username}%");
+        }
+
+        // Ordenar
+        $sortBy = request('sort_by', 'id'); // default id
+        $sortOrder = request('sort_order', 'desc');
+        $query->orderBy($sortBy, $sortOrder);
+
+        // Paginación
+        $users = $query->paginate(40)->withQueryString();
+
+        // Total de usuarios (sin filtros)
         $totalUsers = User::count();
+
         return view('forum.users.index', compact('users', 'totalUsers'));
     }
-
     /**
      * Show the form for creating a new resource.
      */

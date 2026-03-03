@@ -210,21 +210,22 @@ a:hover { color: #FFFFFF; text-decoration: underline; }
             </div>
 
             <div class="memberlist-search">
-                Find member:
-                <input type="text" name="username" size="30" placeholder="Enter username..." />
-                <input type="submit" value="Search" />
-                   Sort by:
-                <select>
-                    <option>Username</option>
-                    <option>Threads</option>
-                    <option>Join Date</option>
-                    <option>Last Active</option>
-                </select>
-                <select>
-                    <option>Ascending</option>
-                    <option>Descending</option>
-                </select>
-                <input type="submit" value="Go" />
+                <form action="{{ route('forum.users.index') }}" method="GET">
+                    Find member:
+                    <input type="text" name="username" size="30" placeholder="Enter username..." value="{{ request('username') }}" />
+                    <input type="submit" value="Search" />
+                    Sort by:
+                    <select name="sort_by">
+                        <option value="name" {{ request('sort_by') == 'name' ? 'selected' : '' }}>Username</option>
+                        <option value="threads_count" {{ request('sort_by') == 'threads_count' ? 'selected' : '' }}>Threads</option>
+                        <option value="created_at" {{ request('sort_by') == 'created_at' ? 'selected' : '' }}>Join Date</option>
+                    </select>
+                    <select name="sort_order">
+                        <option value="asc" {{ request('sort_order') == 'asc' ? 'selected' : '' }}>Ascending</option>
+                        <option value="desc" {{ request('sort_order') == 'desc' ? 'selected' : '' }}>Descending</option>
+                    </select>
+                    <input type="submit" value="Go" />
+                </form>
             </div>
             <table class="memberlist-table">
                 <tr>
